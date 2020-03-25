@@ -35,6 +35,7 @@ functions:
           path: users
           method: get
           cors: true
+          authorizer: authorize
   updateUser:
     handler: api/users/updateUser.updateUser
     events:
