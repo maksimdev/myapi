@@ -1,0 +1,164 @@
+service: api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  authorize:
+    handler: api/authorize.authorize
+  login:
+    handler: api/login.login
+    events:
+      - http:
+          path: login
+          method: post
+          cors: true
+  createUser:
+    handler: api/users/createUser.createUser
+    events:
+      - http:
+          path: user
+          method: post
+          cors: true
+  getUser:
+    handler: api/users/getUser.getUser
+    events:
+      - http:
+          path: user
+          method: get
+          cors: true
+  getUsers:
+    handler: api/users/getUsers.getUsers
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+  updateUser:
+    handler: api/users/updateUser.updateUser
+    events:
+      - http:
+          path: user
+          method: put
+          cors: true
+  deleteUser:
+    handler: api/users/deleteUser.deleteUser
+    events:
+      - http:
+          path: user
+          method: delete
+          cors: true
+  createCategory:
+    handler: api/categories/createCategory.createCategory
+    events:
+      - http:
+          path: category
+          method: post
+          cors: true
+  getCategory:
+    handler: api/categories/getCategory.getCategory
+    events:
+      - http:
+          path: category
+          method: get
+          cors: true
+  getCategories:
+    handler: api/categories/getCategories.getCategories
+    events:
+      - http:
+          path: categories
+          method: get
+          cors: true
+          authorizer: authorize
+  updateCategory:
+    handler: api/categories/updateCategory.updateCategory
+    events:
+      - http:
+          path: category
+          method: put
+          cors: true
+  deleteCategory:
+    handler: api/categories/deleteCategory.deleteCategory
+    events:
+      - http:
+          path: category
+          method: delete
+          cors: true
+  createPurchase:
+    handler: api/purchases/createPurchase.createPurchase
+    events:
+      - http:
+          path: purchase
+          method: post
+          cors: true
+  getPurchase:
+    handler: api/purchases/getPurchase.getPurchase
+    events:
+      - http:
+          path: purchase
+          method: get
+          cors: true
+  getPurchases:
+    handler: api/purchases/getPurchases.getPurchases
+    events:
+      - http:
+          path: purchases
+          method: get
+          cors: true
+  updatePurchase:
+    handler: api/purchases/updatePurchase.updatePurchase
+    events:
+      - http:
+          path: purchase
+          method: put
+          cors: true
+  deletePurchase:
+    handler: api/purchases/deletePurchase.deletePurchase
+    events:
+      - http:
+          path: purchase
+          method: delete
+          cors: true
+  getStatistic:
+    handler: api/statistic/getStatistic.getStatistic
+    events:
+      - http:
+          path: statistic
+          method: get
+          cors: true
+  getBill:
+    handler: api/bills/getBill.getBill
+    events:
+      - http:
+          path: bill
+          method: get
+          cors: true
+  getBillAndSave:
+    handler: api/bills/getBillAndSave.getBillAndSave
+    events:
+      - http:
+          path: savebill
+          method: get
+          cors: true
+  checkBill:
+    handler: api/bills/checkBill.checkBill
+    events:
+      - http:
+          path: checkbill
+          method: get
+          cors: true
+  createUserForBill:
+    handler: api/bills/createUserForBill.createUserForBill
+    events:
+      - http:
+          path: createuserforbill
+          method: post
+          cors: true
+  restorePasswordForBill:
+    handler: api/bills/restorePasswordForBill.restorePasswordForBill
+    events:
+      - http:
+          path: restorepasswordforbill
+          method: post
+          cors: true
