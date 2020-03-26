@@ -8,11 +8,11 @@ module.exports.authorize = function(event, context, callback) {
     const authorizerContext = { user: JSON.stringify(user) };
     const isAllowed = utils.authorizeUser(user.scopes, event.methodArn);
     if (isAllowed) {
-      callback(null, utils.generatePolicy('user', 'Allow', event.methodArn, authorizerContext, authorizerContext));
+      callback(null, utils.generatePolicy('user', 'Allow', event.methodArn, authorizerContext));
     } else {
-      callback(null, utils.generatePolicy('user', 'Deny', event.methodArn, authorizerContext, authorizerContext)); //404 we can change policies just rename to get 404 lambda!
+      callback(null, utils.generatePolicy('user', 'Deny', event.methodArn, authorizerContext));
     }
   } catch (e) {
-    callback(`Unauthorized`); //404 we can change policies just rename to get 404 lambda!
+    callback(`Unauthorized`);
   }
 };
