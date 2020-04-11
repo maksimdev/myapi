@@ -9,8 +9,7 @@ module.exports.createReceipt = async (event, context, callback) => {
   const user = JSON.parse(event.requestContext.authorizer.user);
   const data = JSON.parse(event.body);
   const receiptWasFound = data.receipt ? true : false;
-  const request = data.receipt ? data.receipt : { fn, fd, fdp, t, s };
-
+  const request = receiptWasFound ? data.receipt : data;
   const client = await pool.connect();
   const resultReceiptsRequests = await client.query(
     `
