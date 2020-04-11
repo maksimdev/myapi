@@ -163,11 +163,27 @@ functions:
           path: restorepasswordforbill
           method: post
           cors: true
-  createReceiptRequest:
-    handler: api/receiptsrequests/createReceiptRequest.createReceiptRequest
+  createReceipt:
+    handler: api/receipts/createReceipt.createReceipt
     events:
       - http:
-          path: receiptrequest
+          path: receipt
           method: post
+          cors: true
+          authorizer: authorize
+  getReceipts:
+    handler: api/receipts/getReceipts.getReceipts
+    events:
+      - http:
+          path: receipts
+          method: get
+          cors: true
+          authorizer: authorize
+  getReceipt:
+    handler: api/receipts/getReceipt.getReceipt
+    events:
+      - http:
+          path: receipts/{id}
+          method: get
           cors: true
           authorizer: authorize
