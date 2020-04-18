@@ -132,6 +132,7 @@ functions:
           path: statistic
           method: get
           cors: true
+          authorizer: authorize
   getBill:
     handler: api/bills/getBill.getBill
     events:

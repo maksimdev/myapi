@@ -4,17 +4,14 @@ const utils = require('../../lib/utils');
 
 const pool = new Pool(config);
 
-module.exports.getReceipts = (event, context, callback) => {
+module.exports.getStatistic = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  const user = JSON.parse(event.requestContext.authorizer.user);
-
+  
   pool.connect((err, client, release) => {
     if (err) {
       return callback(null, utils.convertToRespose(err, 500));
     }
-    client.query(
-      `SELECT id, fiscaldocumentnumber, totalsum, fiscalsign, datetime, fiscaldrivenumber, userid, status, created_at FROM public.receipts_requests WHERE userid = $1 order by "datetime" desc;`,
-    [user.id],
+    client.query('WITH temptable AS (SELECT EXTRACT(YEAR FROM p."date") AS "year", EXTRACT(MONTH FROM p."date") AS "month", p."cost" FROM purchases AS p JOIN categories AS c ON p."category_id" = c."id") select "year", "month", sum("cost") from temptable group by ("year", "month");',
     (err, result) => {
       release()
       if (err) {
