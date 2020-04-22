@@ -89,6 +89,41 @@ functions:
           path: shoppingList
           method: delete
           cors: true
+  createShoppingItem:
+    handler: api/shoppingItems/createShoppingItem.createShoppingItem
+    events:
+      - http:
+          path: shoppingItem
+          method: post
+          cors: true
+  getShoppingItem:
+    handler: api/shoppingItems/getShoppingItem.getShoppingItem
+    events:
+      - http:
+          path: shoppingItem
+          method: get
+          cors: true
+  getShoppingItems:
+    handler: api/shoppingItems/getShoppingItems.getShoppingItems
+    events:
+      - http:
+          path: shoppingItems
+          method: get
+          cors: true
+  updateShoppingItem:
+    handler: api/shoppingItems/updateShoppingItem.updateShoppingItem
+    events:
+      - http:
+          path: shoppingItem
+          method: put
+          cors: true
+  deleteShoppingItem:
+    handler: api/shoppingItems/deleteShoppingItem.deleteShoppingItem
+    events:
+      - http:
+          path: shoppingItem
+          method: delete
+          cors: true
   getStatistic:
     handler: api/statistic/getStatistic.getStatistic
     events:
