@@ -4,14 +4,16 @@ const utils = require('../../lib/utils');
 
 const pool = new Pool(config);
 
-module.exports.getCategories = (event, context, callback) => {
+module.exports.getShoppingLists = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  
+  const user = event.requestContext.authorizer.claims.user;
   pool.connect((err, client, release) => {
     if (err) {
-      return callback(null, utils.convertToRespose(err, 500));
+      return callback(null, utils.convertToRespose(err, 500))
     }
-    client.query('SELECT * from categories;', (err, result) => {
+    client.query(`SELECT "id", "title", "status", "created_at", "updated_at" from shopping_lists where "userid" = $1;`,
+    [user.id],
+    (err, result) => {
       release()
       if (err) {
         return callback(null, utils.convertToRespose(err, 500));

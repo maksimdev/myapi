@@ -54,75 +54,39 @@ functions:
           path: user
           method: delete
           cors: true
-  createCategory:
-    handler: api/categories/createCategory.createCategory
+  createShoppingList:
+    handler: api/shoppingLists/createShoppingList.createShoppingList
     events:
       - http:
-          path: category
+          path: shoppingList
           method: post
           cors: true
-  getCategory:
-    handler: api/categories/getCategory.getCategory
+  getShoppingList:
+    handler: api/shoppingLists/getShoppingList.getShoppingList
     events:
       - http:
-          path: category
+          path: shoppingList
           method: get
           cors: true
-  getCategories:
-    handler: api/categories/getCategories.getCategories
+  getShoppingLists:
+    handler: api/shoppingLists/getShoppingLists.getShoppingLists
     events:
       - http:
-          path: categories
+          path: shoppingLists
           method: get
           cors: true
-          authorizer: authorize
-  updateCategory:
-    handler: api/categories/updateCategory.updateCategory
+  updateShoppingList:
+    handler: api/shoppingLists/updateShoppingList.updateShoppingList
     events:
       - http:
-          path: category
+          path: shoppingList
           method: put
           cors: true
-  deleteCategory:
-    handler: api/categories/deleteCategory.deleteCategory
+  deleteShoppingList:
+    handler: api/shoppingLists/deleteShoppingList.deleteShoppingList
     events:
       - http:
-          path: category
-          method: delete
-          cors: true
-  createPurchase:
-    handler: api/purchases/createPurchase.createPurchase
-    events:
-      - http:
-          path: purchase
-          method: post
-          cors: true
-  getPurchase:
-    handler: api/purchases/getPurchase.getPurchase
-    events:
-      - http:
-          path: purchase
-          method: get
-          cors: true
-  getPurchases:
-    handler: api/purchases/getPurchases.getPurchases
-    events:
-      - http:
-          path: purchases
-          method: get
-          cors: true
-  updatePurchase:
-    handler: api/purchases/updatePurchase.updatePurchase
-    events:
-      - http:
-          path: purchase
-          method: put
-          cors: true
-  deletePurchase:
-    handler: api/purchases/deletePurchase.deletePurchase
-    events:
-      - http:
-          path: purchase
+          path: shoppingList
           method: delete
           cors: true
   getStatistic:

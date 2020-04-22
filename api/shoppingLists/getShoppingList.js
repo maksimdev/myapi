@@ -4,16 +4,19 @@ const utils = require('../../lib/utils');
 
 const pool = new Pool(config);
 
-module.exports.deleteCategory = (event, context, callback) => {
+module.exports.getShoppingList = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   const id = event.queryStringParameters && event.queryStringParameters.id;
+  const user = event.requestContext.authorizer.claims.user;
   if(!id) return callback(null, utils.convertToRespose('Error: Id is empty', 500));
-  
+
   pool.connect((err, client, release) => {
     if (err) {
       return callback(null, utils.convertToRespose(err, 500))
     }
-    client.query('DELETE FROM categories where "id" = $1 RETURNING *;', [id], (err, result) => {
+    client.query(`SELECT "id", "title", "status", "created_at", "updated_at" from shopping_lists where "id" = $1 and "userid" = $2 limit 1;`,
+    [id, user.id],
+    (err, result) => {
       release()
       if (err) {
         return callback(null, utils.convertToRespose(err, 500));
