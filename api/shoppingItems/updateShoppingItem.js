@@ -8,7 +8,7 @@ module.exports.updateShoppingItem = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   const id = event.queryStringParameters && event.queryStringParameters.id;
   const { name, category, amount, status } = JSON.parse(event.body);
-  const user = event.requestContext.authorizer.claims.user;
+  const user = JSON.parse(event.requestContext.authorizer.user);
   if (!id) return callback(null, utils.convertToRespose('Error: Id is empty', 500));
   
   pool.connect((err, client, release) => {

@@ -7,7 +7,7 @@ const pool = new Pool(config);
 module.exports.createShoppingList = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   const { title, status } = JSON.parse(event.body);
-  const user = event.requestContext.authorizer.claims.user;
+  const user = JSON.parse(event.requestContext.authorizer.user);
   if (!title) return callback(null, utils.convertToRespose('Error: props are invalid', 500));
 
   pool.connect((err, client, release) => {

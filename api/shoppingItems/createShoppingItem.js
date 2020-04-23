@@ -8,7 +8,7 @@ const pool = new Pool(config);
 module.exports.createShoppingItem = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   const { name, category, amount, status, listId } = JSON.parse(event.body);
-  const user = event.requestContext.authorizer.claims.user;
+  const user = JSON.parse(event.requestContext.authorizer.user);
   pool.connect((err, client, release) => {
     if (err) {
       return callback(null, utils.convertToRespose(err, 500))

@@ -6,7 +6,7 @@ const pool = new Pool(config);
 
 module.exports.getShoppingLists = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  const user = event.requestContext.authorizer.claims.user;
+  const user = JSON.parse(event.requestContext.authorizer.user);
   pool.connect((err, client, release) => {
     if (err) {
       return callback(null, utils.convertToRespose(err, 500))
