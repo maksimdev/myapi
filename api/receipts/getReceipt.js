@@ -33,5 +33,5 @@ module.exports.getReceipt = async (event, context, callback) => {
 
   client.release();
 
-  callback(null, utils.convertToRespose({ receipt: resultReceipt.rows[0], items: resultGoods.rows }));
+  callback(null, utils.convertToRespose(200, { receipt: resultReceipt.rows[0], items: resultGoods.rows }));
 };

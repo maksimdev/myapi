@@ -16,5 +16,5 @@ module.exports.getBill = async (event, context, callback) => {
     'Device-OS': DEVICEOS
   }});
 
-  callback(null, utils.convertToRespose(res.data));
+  callback(null, utils.convertToRespose(200, res.data));
 }

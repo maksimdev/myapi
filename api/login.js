@@ -10,8 +10,8 @@ module.exports.login = async (event, context, callback) => {
 
   const { username, password } = JSON.parse(event.body);
 
-  if(!username) return callback(null, utils.convertToRespose('Error: username is empty', 500));
-  if(!password) return callback(null, utils.convertToRespose('Error: password is empty', 500));
+  if(!username) return callback(null, utils.convertToRespose(500, 'Error: username is empty'));
+  if(!password) return callback(null, utils.convertToRespose(500, 'Error: password is empty'));
 
   const client = await pool.connect();
   const result = await client.query(
@@ -21,7 +21,7 @@ module.exports.login = async (event, context, callback) => {
 
   const user = result.rows[0];
 
-  if(!user) return callback(null, utils.convertToRespose('Error: username or/and password is not valid', 404));
+  if(!user) return callback(null, utils.convertToRespose(401, 'Error: username or/and password is not valid'));
 
   try {
 

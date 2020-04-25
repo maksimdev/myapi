@@ -7,7 +7,7 @@ module.exports.createUserForBill = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   const { phone, email, name } = JSON.parse(event.body);
 
-  if(!phone || !email || !name) return callback(null, utils.convertToRespose('Error: props are invalid', 500));
+  if(!phone || !email || !name) return callback(null, utils.convertToRespose(500, 'Error: props are invalid'));
 
   const contentType = 'application/json; charset=UTF-8';
   const body = JSON.stringify({ phone, email, name });
@@ -19,5 +19,5 @@ module.exports.createUserForBill = async (event, context, callback) => {
     body
   });
 
-  callback(null, utils.convertToRespose(res.data));
+  callback(null, utils.convertToRespose(200, res.data));
 }

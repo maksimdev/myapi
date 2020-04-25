@@ -25,7 +25,7 @@ module.exports.getStatistic = async (event, context, callback) => {
   
   client.release();
 
-  callback(null, utils.convertToRespose({
+  callback(null, utils.convertToRespose(200, {
     billRequests: billRequestsResult.rows,
     statistic: []
   }));

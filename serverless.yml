@@ -102,22 +102,6 @@ functions:
           method: post
           cors: true
           authorizer: authorize
-  getShoppingItem:
-    handler: api/shoppingItems/getShoppingItem.getShoppingItem
-    events:
-      - http:
-          path: shoppingItem
-          method: get
-          cors: true
-          authorizer: authorize
-  getShoppingItems:
-    handler: api/shoppingItems/getShoppingItems.getShoppingItems
-    events:
-      - http:
-          path: shoppingItems
-          method: get
-          cors: true
-          authorizer: authorize
   updateShoppingItem:
     handler: api/shoppingItems/updateShoppingItem.updateShoppingItem
     events:

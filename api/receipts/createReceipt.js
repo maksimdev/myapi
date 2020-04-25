@@ -76,5 +76,5 @@ module.exports.createReceipt = async (event, context, callback) => {
 
   client.release();
 
-  callback(null, utils.convertToRespose({ type: 'SYSTEM', message: `ok` }, 200));
+  callback(null, utils.convertToRespose(200, { type: 'SYSTEM', message: `ok` }));
 };

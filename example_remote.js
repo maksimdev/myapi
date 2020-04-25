@@ -8,14 +8,14 @@ module.exports.getUsers = (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   pool.connect((err, client, release) => {
     if (err) {
-      return callback(null, utils.convertToRespose(err, 500))
+      return callback(null, utils.convertToRespose(500, err))
     }
     client.query('SELECT * from users', (err, result) => {
       release()
       if (err) {
-        return callback(null, utils.convertToRespose(err, 500))
+        return callback(null, utils.convertToRespose(500, err))
       }
-      callback(null, utils.convertToRespose(result.rows))
+      callback(null, utils.convertToRespose(200, result.rows))
     })
   });
 };

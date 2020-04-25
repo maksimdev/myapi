@@ -10,7 +10,7 @@ module.exports.getReceipts = (event, context, callback) => {
 
   pool.connect((err, client, release) => {
     if (err) {
-      return callback(null, utils.convertToRespose(err, 500));
+      return callback(null, utils.convertToRespose(500, err));
     }
     client.query(
       `SELECT id, fiscaldocumentnumber, totalsum, fiscalsign, datetime, fiscaldrivenumber, userid, status, created_at FROM public.receipts_requests WHERE userid = $1 order by "datetime" desc;`,
@@ -18,9 +18,9 @@ module.exports.getReceipts = (event, context, callback) => {
     (err, result) => {
       release()
       if (err) {
-        return callback(null, utils.convertToRespose(err, 500));
+        return callback(null, utils.convertToRespose(500, err));
       }
-      callback(null, utils.convertToRespose(result.rows));
+      callback(null, utils.convertToRespose(200, result.rows));
     })
   });
 };

@@ -41,7 +41,7 @@ module.exports.getBillAndSave = async (event, context, callback) => {
   } = res.data.document.receipt;
   const { items } = res.data.document.receipt;
 
-  if (!res.data) return callback(null, utils.convertToRespose({ type: 'PROVERKACHEKA', message: `${res.message}` }, 500));
+  if (!res.data) return callback(null, utils.convertToRespose(500, { type: 'PROVERKACHEKA', message: `${res.message}` }));
 
   const client = await pool.connect();
   const resultReceipt = await client.query(
@@ -76,5 +76,5 @@ module.exports.getBillAndSave = async (event, context, callback) => {
 
   client.release()
 
-  callback(null, utils.convertToRespose({ type: 'SYSTEM', message: `${resultReceipt.rowCount}:${resultItems.rowCount}` }, 200));
+  callback(null, utils.convertToRespose(200, { type: 'SYSTEM', message: `${resultReceipt.rowCount}:${resultItems.rowCount}` }));
 };
