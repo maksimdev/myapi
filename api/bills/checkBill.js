@@ -10,5 +10,5 @@ module.exports.checkBill = async (event, context, callback) => {
   const url = `https://proverkacheka.nalog.ru:9999/v1/ofds/*/inns/*/fss/${fn}/operations/1/tickets/${fd}?fiscalSign=${fp}&date=${time}&sum=${sum}`;
   const res = await axios.get(url);
 
-  callback(null, utils.convertToRespose(200, res.data));
+  callback(null, utils.convertToRespose(res.status));
 }
