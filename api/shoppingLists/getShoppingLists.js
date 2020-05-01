@@ -11,7 +11,7 @@ module.exports.getShoppingLists = (event, context, callback) => {
     if (err) {
       return callback(null, utils.convertToRespose(500, err));
     }
-    client.query(`SELECT "id", "title", "status", "created_at", "updated_at" from shopping_lists where "userid" = $1;`,
+    client.query(`SELECT "id", "title", "status", "created_at", "updated_at" from shopping_lists where "userid" = $1 ORDER BY "created_at" DESC;`,
     [user.id],
     (err, result) => {
       release()
