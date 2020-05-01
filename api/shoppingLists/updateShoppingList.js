@@ -18,7 +18,7 @@ module.exports.updateShoppingList = (event, context, callback) => {
     }
     client.query(
       `UPDATE shopping_lists SET "title" = $2, "status" = $3, "updated_at" = now() WHERE "id" = $1 and "userid" = $4 RETURNING *;`,
-      [id ,title, status, user.id], (err, result) => {
+      [id, title, status, user.id], (err, result) => {
       release()
       if (err) {
         return callback(null, utils.convertToRespose(500, err))
