@@ -20,7 +20,6 @@ module.exports.login = async (event, context, callback) => {
   );
 
   const user = result.rows[0];
-
   if(!user) return callback(null, utils.convertToRespose(401, 'Error: username or/and password is not valid'));
 
   try {

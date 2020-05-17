@@ -19,7 +19,7 @@ module.exports.getStatistic = async (event, context, callback) => {
   // );
 
   billRequestsResult = await client.query(
-    `select * from public.receipts_requests as rr where EXTRACT(YEAR FROM datetime) = $1 and EXTRACT(MONTH FROM datetime) = $2 and "userid" = $3;`,
+    `select * from public.receipts_requests as rr where EXTRACT(YEAR FROM datetime) = $1 and EXTRACT(MONTH FROM datetime) = $2 and "userid" = $3 order by "datetime" desc;`,
     [year, month, user.id]
   );
   
