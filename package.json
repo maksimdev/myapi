@@ -18,6 +18,6 @@
   "devDependencies": {
     "serverless": "^1.67.3",
     "serverless-dotenv-plugin": "^2.3.2",
-    "serverless-offline": "^6.1.4"
+    "serverless-offline": "^12.0.4"
   }
 }
